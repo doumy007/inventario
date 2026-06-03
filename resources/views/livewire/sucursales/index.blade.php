@@ -36,6 +36,7 @@ new #[Layout('layouts.app')] class extends Component
     @endif
 
     <div class="bg-white rounded-lg shadow-md overflow-hidden">
+        <div class="overflow-x-auto">
         <table class="min-w-full divide-y divide-gray-200">
             <thead class="bg-gray-50">
                 <tr>
@@ -77,6 +78,7 @@ new #[Layout('layouts.app')] class extends Component
                 @endforelse
             </tbody>
         </table>
+        </div>
     </div>
 </div>
 
