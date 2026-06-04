@@ -17,7 +17,7 @@ new class extends Component
         <div class="flex justify-between h-16">
             <div class="flex items-center">
                 {{-- Mobile menu toggle --}}
-                <button @click="$root.closest('[x-data]').__x.$data.sidebarOpen = true"
+                <button @click="$dispatch('toggle-sidebar')"
                     class="lg:hidden mr-2 p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none">
                     <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />

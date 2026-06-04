@@ -10,7 +10,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="font-sans antialiased">
-    <div x-data="{ sidebarOpen: false, mobileMenuOpen: false }" class="min-h-screen bg-gray-100">
+    <div x-data="{ sidebarOpen: false }" @toggle-sidebar.window="sidebarOpen = !sidebarOpen" class="min-h-screen bg-gray-100">
         <livewire:layout.navigation />
 
         @auth
@@ -54,21 +54,25 @@
             </div>
             <livewire:layout.sidebar />
         </aside>
-
-        {{-- Desktop sidebar --}}
-        <aside class="w-64 bg-white border-r border-gray-200 min-h-screen hidden lg:block">
-            <livewire:layout.sidebar />
-        </aside>
         @endauth
 
-        <main class="flex-1 p-4 sm:p-6 lg:p-8">
-            @if (isset($header))
-                <header class="bg-white shadow-sm rounded-lg mb-4 sm:mb-6 p-4">
-                    {{ $header }}
-                </header>
-            @endif
-            {{ $slot }}
-        </main>
+        <div class="flex">
+            @auth
+            {{-- Desktop sidebar --}}
+            <aside class="w-64 bg-white border-r border-gray-200 min-h-screen hidden lg:block shrink-0">
+                <livewire:layout.sidebar />
+            </aside>
+            @endauth
+
+            <main class="flex-1 min-w-0 p-4 sm:p-6 lg:p-8">
+                @if (isset($header))
+                    <header class="bg-white shadow-sm rounded-lg mb-4 sm:mb-6 p-4">
+                        {{ $header }}
+                    </header>
+                @endif
+                {{ $slot }}
+            </main>
+        </div>
     </div>
 
     <style>
